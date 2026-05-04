@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" width="320" height="90">
+  <defs>
+    <!-- Gold gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0c040"/>
+      <stop offset="50%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#f0c040"/>
+    </linearGradient>
+    <!-- Cyan accent -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#0090ff"/>
+    </linearGradient>
+    <!-- Battery body gradient -->
+    <linearGradient id="batGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a2540"/>
+      <stop offset="100%" stop-color="#0d1525"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a017"/>
+      <stop offset="40%" stop-color="#f0c040"/>
+      <stop offset="70%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#f0c040"/>
+    </linearGradient>
+    <!-- Shimmer animation gradient -->
+    <linearGradient id="shimmer" x1="-100%" y1="0%" x2="200%" y2="0%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="transparent"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-2 0" to="2 0" dur="2.5s" repeatCount="indefinite"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ─── BATTERY ICON (left side) ─── -->
+  <!-- Outer glow ring -->
+  <circle cx="44" cy="45" r="36" fill="none" stroke="rgba(212,160,23,0.15)" stroke-width="1.5">
+    <animate attributeName="r" values="36;39;36" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="44" cy="45" r="28" fill="none" stroke="rgba(0,229,255,0.1)" stroke-width="1">
+    <animate attributeName="r" values="28;31;28" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+
+  <!-- Battery body -->
+  <rect x="16" y="28" width="48" height="34" rx="6" ry="6" fill="url(#batGrad)" stroke="url(#goldGrad)" stroke-width="1.8" filter="url(#glow)"/>
+  <!-- Battery terminal -->
+  <rect x="64" y="36" width="6" height="18" rx="3" ry="3" fill="url(#goldGrad)" opacity="0.9"/>
+  <!-- Battery fill level (animated charge) -->
+  <rect x="19" y="31" width="0" height="28" rx="4" ry="4" fill="url(#cyanGrad)" opacity="0.25">
+    <animate attributeName="width" values="0;42;42;0" keyTimes="0;0.5;0.9;1" dur="4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Lightning bolt (SVG path, centered in battery) -->
+  <path d="M47 29 L35 47 L43 47 L39 61 L53 43 L45 43 Z"
+        fill="url(#goldGrad)" filter="url(#glowStrong)">
+    <animate attributeName="opacity" values="1;0.7;1" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Spark dots -->
+  <circle cx="18" cy="27" r="2" fill="#f0c040" opacity="0">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    <animate attributeName="cx" values="18;14;18" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="27;22;27" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="70" cy="63" r="1.5" fill="#00e5ff" opacity="0">
+    <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="cx" values="70;75;70" dur="2.2s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="63;68;63" dur="2.2s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ─── TEXT (right side) ─── -->
+  <!-- "COMERCIAL" -->
+  <text x="95" y="40"
+        font-family="'Orbitron', 'Arial', sans-serif"
+        font-size="11"
+        font-weight="700"
+        letter-spacing="3"
+        fill="url(#textGrad)"
+        filter="url(#glow)">COMERCIAL</text>
+
+  <!-- Shimmer overlay on text -->
+  <text x="95" y="40"
+        font-family="'Orbitron', 'Arial', sans-serif"
+        font-size="11"
+        font-weight="700"
+        letter-spacing="3"
+        fill="url(#shimmer)"
+        opacity="0.6">COMERCIAL</text>
+
+  <!-- Divider line with glow -->
+  <line x1="95" y1="46" x2="312" y2="46" stroke="url(#goldGrad)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- "QUILLACAS" — larger, bolder -->
+  <text x="93" y="70"
+        font-family="'Orbitron', 'Arial', sans-serif"
+        font-size="22"
+        font-weight="900"
+        letter-spacing="2"
+        fill="url(#goldGrad)"
+        filter="url(#glowStrong)">QUILLACAS</text>
+
+  <!-- Shimmer on main text -->
+  <text x="93" y="70"
+        font-family="'Orbitron', 'Arial', sans-serif"
+        font-size="22"
+        font-weight="900"
+        letter-spacing="2"
+        fill="url(#shimmer)"
+        opacity="0.5">QUILLACAS</text>
+
+  <!-- "ENERGÍA AUTOMOTRIZ" tagline -->
+  <text x="95" y="82"
+        font-family="'Arial', sans-serif"
+        font-size="7"
+        font-weight="400"
+        letter-spacing="3"
+        fill="rgba(0,229,255,0.7)">ENERGÍA AUTOMOTRIZ · BOLIVIA</text>
+</svg>

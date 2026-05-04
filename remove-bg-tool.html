@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar Fondo – Comercial Quillacas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0f14;
+      --surface:  #161a24;
+      --card:     #1e2336;
+      --accent:   #4f8ef7;
+      --accent2:  #7c3aed;
+      --success:  #22c55e;
+      --warning:  #f59e0b;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --radius:   14px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 64px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      padding: 28px;
+      width: 100%;
+      max-width: 780px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.45);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Drop zone ── */
+    #dropzone {
+      border: 2px dashed rgba(79,142,247,.4);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .25s, background .25s;
+    }
+    #dropzone:hover, #dropzone.drag-over {
+      border-color: var(--accent);
+      background: rgba(79,142,247,.06);
+    }
+    #dropzone input[type=file] { display: none; }
+    #dropzone .icon { font-size: 3rem; margin-bottom: 12px; }
+    #dropzone p { color: var(--muted); font-size: .9rem; }
+    #dropzone strong { color: var(--text); }
+
+    /* ── Controls ── */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 520px) { .controls-grid { grid-template-columns: 1fr; } }
+
+    .field label {
+      display: block;
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .field input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .field .val {
+      display: inline-block;
+      background: rgba(79,142,247,.15);
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
+      margin-left: 6px;
+    }
+    .field select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 8px 12px;
+      font-family: inherit;
+      font-size: .9rem;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .checkbox-row input { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+    .checkbox-row label { font-size: .88rem; color: var(--muted); cursor: pointer; }
+
+    /* ── Buttons ── */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .15s, opacity .2s;
+    }
+    button:active { transform: scale(.97); }
+    button:disabled { opacity: .4; cursor: not-allowed; }
+
+    #btnProcess {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      flex: 1;
+    }
+    #btnDownload {
+      background: var(--success);
+      color: #fff;
+    }
+    #btnReset {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    /* ── Preview ── */
+    .preview-wrap {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .preview-wrap.active { display: flex; }
+
+    .preview-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) { .preview-panel { grid-template-columns: 1fr; } }
+
+    .pane {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .pane-label {
+      position: absolute;
+      top: 8px; left: 8px;
+      background: rgba(0,0,0,.65);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .pane canvas, .pane img {
+      width: 100%;
+      display: block;
+    }
+    /* dark-bg demo */
+    .demo-bg-dark { background: #111; }
+    /* checkerboard bg to show transparency */
+    .checker-bg {
+      background-image:
+        linear-gradient(45deg, #888 25%, transparent 25%),
+        linear-gradient(-45deg, #888 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #888 75%),
+        linear-gradient(-45deg, transparent 75%, #888 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #ccc;
+    }
+
+    /* ── Progress ── */
+    #statusBar {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: 14px;
+      min-height: 20px;
+    }
+    #statusBar.ok { color: var(--success); }
+    #statusBar.err { color: #f87171; }
+
+    /* spinning loader */
+    .spin {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(79,142,247,.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <h1>🖼️ Eliminador de Fondo</h1>
+  <p class="subtitle">Elimina el fondo cuadriculado y blanco del logo · Exporta PNG con transparencia real</p>
+
+  <!-- UPLOAD -->
+  <div class="card">
+    <h2>📁 1. Cargar imagen del logo</h2>
+    <div id="dropzone">
+      <input type="file" id="fileInput" accept="image/*" />
+      <div class="icon">🎨</div>
+      <strong>Haz clic aquí o arrastra tu imagen</strong>
+      <p style="margin-top:6px;">PNG · JPG · WEBP · cualquier formato</p>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="card">
+    <h2>⚙️ 2. Ajustar parámetros</h2>
+    <div class="controls-grid">
+
+      <div class="field">
+        <label>Tolerancia de color blanco <span class="val" id="tolWhiteVal">30</span></label>
+        <input type="range" id="tolWhite" min="0" max="120" value="30" />
+      </div>
+
+      <div class="field">
+        <label>Tolerancia del cuadriculado gris <span class="val" id="tolGrayVal">20</span></label>
+        <input type="range" id="tolGray" min="0" max="80" value="20" />
+      </div>
+
+      <div class="field">
+        <label>Suavizado de bordes (feather) <span class="val" id="featherVal">1</span> px</label>
+        <input type="range" id="feather" min="0" max="6" value="1" step="1" />
+      </div>
+
+      <div class="field">
+        <label>Erosión de borde (quitar franja blanca) <span class="val" id="erodeVal">1</span></label>
+        <input type="range" id="erode" min="0" max="5" value="1" step="1" />
+      </div>
+
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="chkFloodFill" checked />
+      <label for="chkFloodFill">Flood fill desde las esquinas (elimina fondo conexo)</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="chkGrayChecker" checked />
+      <label for="chkGrayChecker">Eliminar también cuadros grises del simulador de transparencia</label>
+    </div>
+
+    <div class="btn-row">
+      <button id="btnProcess" disabled>🚀 Procesar imagen</button>
+      <button id="btnDownload" disabled>⬇️ Descargar PNG</button>
+      <button id="btnReset">🔄 Reiniciar</button>
+    </div>
+    <div id="statusBar"></div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="card">
+    <h2>👁️ 3. Vista previa del resultado</h2>
+    <div class="preview-wrap" id="previewWrap">
+      <div class="preview-panel">
+        <div class="pane">
+          <span class="pane-label">Original</span>
+          <canvas id="cvOrig"></canvas>
+        </div>
+        <div class="pane checker-bg">
+          <span class="pane-label">Transparencia</span>
+          <canvas id="cvResult"></canvas>
+        </div>
+      </div>
+      <div class="pane demo-bg-dark" style="padding:20px; text-align:center;">
+        <span class="pane-label">Demo fondo oscuro</span>
+        <canvas id="cvDemo" style="max-width:360px; margin:0 auto; display:block;"></canvas>
+      </div>
+    </div>
+    <p id="previewHint" style="color:var(--muted); font-size:.88rem; text-align:center; padding:20px 0;">
+      Carga una imagen y presiona "Procesar" para ver la vista previa aquí.
+    </p>
+  </div>
+
+  <!-- HIDDEN work canvas -->
+  <canvas id="cvWork" style="display:none;"></canvas>
+
+<script>
+// ─────────────────────────────────────────────────
+// State
+// ─────────────────────────────────────────────────
+let origImageData = null;   // raw pixels of uploaded image
+let resultBlob    = null;   // final PNG blob
+
+const dropzone   = document.getElementById('dropzone');
+const fileInput  = document.getElementById('fileInput');
+const btnProcess = document.getElementById('btnProcess');
+const btnDownload= document.getElementById('btnDownload');
+const btnReset   = document.getElementById('btnReset');
+const statusBar  = document.getElementById('statusBar');
+const previewWrap= document.getElementById('previewWrap');
+const previewHint= document.getElementById('previewHint');
+
+const cvWork  = document.getElementById('cvWork');
+const cvOrig  = document.getElementById('cvOrig');
+const cvResult= document.getElementById('cvResult');
+const cvDemo  = document.getElementById('cvDemo');
+
+const ctxWork  = cvWork.getContext('2d', { willReadFrequently: true });
+const ctxOrig  = cvOrig.getContext('2d');
+const ctxResult= cvResult.getContext('2d');
+const ctxDemo  = cvDemo.getContext('2d');
+
+// ─────────────────────────────────────────────────
+// Range labels
+// ─────────────────────────────────────────────────
+function bindRange(id, labelId) {
+  const el = document.getElementById(id);
+  const lb = document.getElementById(labelId);
+  el.addEventListener('input', () => { lb.textContent = el.value; });
+}
+bindRange('tolWhite','tolWhiteVal');
+bindRange('tolGray', 'tolGrayVal');
+bindRange('feather', 'featherVal');
+bindRange('erode',   'erodeVal');
+
+// ─────────────────────────────────────────────────
+// Drop zone
+// ─────────────────────────────────────────────────
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) loadFile(file);
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) loadFile(fileInput.files[0]);
+});
+
+function loadFile(file) {
+  setStatus('Cargando imagen…', '');
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    cvWork.width  = img.naturalWidth;
+    cvWork.height = img.naturalHeight;
+    ctxWork.drawImage(img, 0, 0);
+    origImageData = ctxWork.getImageData(0, 0, cvWork.width, cvWork.height);
+
+    // draw original preview
+    cvOrig.width  = img.naturalWidth;
+    cvOrig.height = img.naturalHeight;
+    ctxOrig.drawImage(img, 0, 0);
+
+    URL.revokeObjectURL(url);
+    btnProcess.disabled = false;
+    btnDownload.disabled = true;
+    resultBlob = null;
+    setStatus(`✅ Imagen cargada: ${img.naturalWidth}×${img.naturalHeight} px`, 'ok');
+    previewWrap.classList.add('active');
+    previewHint.style.display = 'none';
+  };
+  img.onerror = () => setStatus('❌ No se pudo cargar la imagen.', 'err');
+  img.src = url;
+}
+
+// ─────────────────────────────────────────────────
+// Core: remove background
+// ─────────────────────────────────────────────────
+btnProcess.addEventListener('click', () => {
+  if (!origImageData) return;
+  setStatus('<span class="spin"></span>Procesando…', '');
+  btnProcess.disabled = true;
+
+  // run async so UI can repaint
+  setTimeout(() => {
+    try {
+      const result = processImage();
+      showResult(result);
+      setStatus('✅ Procesamiento completado. Descarga el PNG transparente.', 'ok');
+    } catch(e) {
+      setStatus('❌ Error: ' + e.message, 'err');
+    }
+    btnProcess.disabled = false;
+  }, 60);
+});
+
+function processImage() {
+  const W = cvWork.width, H = cvWork.height;
+
+  // 1. Reset work canvas to original
+  ctxWork.putImageData(origImageData, 0, 0);
+  const data = new Uint8ClampedArray(origImageData.data);   // work copy
+
+  const tolW  = Number(document.getElementById('tolWhite').value);
+  const tolG  = Number(document.getElementById('tolGray').value);
+  const doFF  = document.getElementById('chkFloodFill').checked;
+  const doGray= document.getElementById('chkGrayChecker').checked;
+  const erode = Number(document.getElementById('erode').value);
+  const feather= Number(document.getElementById('feather').value);
+
+  // ── helper: pixel index
+  const idx = (x,y) => (y * W + x) * 4;
+
+  // ── 1. Per-pixel: erase white/near-white pixels
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i+1], b = data[i+2];
+    // near-white
+    if (r > 255-tolW && g > 255-tolW && b > 255-tolW) {
+      data[i+3] = 0;
+    }
+  }
+
+  // ── 2. Per-pixel: erase checker gray squares (two-tone: ~192 and ~255 or ~128)
+  if (doGray) {
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i], g = data[i+1], b = data[i+2];
+      // classic photoshop checker is 192,192,192 (light) and 128,128,128 (dark)
+      const isGray = Math.abs(r-g) < 15 && Math.abs(g-b) < 15 && Math.abs(r-b) < 15;
+      if (isGray) {
+        // light gray
+        if (r > 180 && r < 210) { data[i+3] = 0; continue; }
+        // medium gray (darker square)
+        if (r > 115 && r < 145) { data[i+3] = 0; continue; }
+        // wider gray within tolerance
+        if (r > 255-tolW-tolG && r < 255 && isGray) { data[i+3] = 0; }
+      }
+    }
+  }
+
+  // ── 3. Flood fill from each corner (removes connected background)
+  if (doFF) {
+    const mask = new Uint8Array(W * H); // 1 = to be erased
+    const queue = [];
+
+    const enqueue = (x,y) => {
+      const i4 = idx(x,y);
+      const pi = y*W+x;
+      if (mask[pi]) return;
+      if (data[i4+3] === 0) { mask[pi]=1; return; }
+      const r=data[i4], g=data[i4+1], b=data[i4+2], a=data[i4+3];
+      // pixel is "background-like" if semi-transparent or near-white or near-gray
+      const nearWhite = r>255-tolW*2 && g>255-tolW*2 && b>255-tolW*2;
+      const isGray2   = Math.abs(r-g)<20 && Math.abs(g-b)<20;
+      const nearGray  = isGray2 && r>100 && r<215;
+      if (nearWhite || nearGray || a<128) {
+        mask[pi] = 1;
+        queue.push(x,y);
+      }
+    };
+
+    // seeds: 4 corners + edges every 10px
+    const seeds = [];
+    for (let x=0; x<W; x+=5) { seeds.push([x,0],[x,H-1]); }
+    for (let y=0; y<H; y+=5) { seeds.push([0,y],[W-1,y]); }
+
+    seeds.forEach(([x,y]) => enqueue(x,y));
+
+    let head = 0;
+    while (head < queue.length) {
+      const x = queue[head++], y = queue[head++];
+      [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy]) => {
+        const nx=x+dx, ny=y+dy;
+        if (nx<0||nx>=W||ny<0||ny>=H) return;
+        enqueue(nx,ny);
+      });
+    }
+
+    // apply mask
+    for (let y=0; y<H; y++) for (let x=0; x<W; x++) {
+      if (mask[y*W+x]) { const i4=idx(x,y); data[i4+3]=0; }
+    }
+  }
+
+  // ── 4. Erode: shrink opaque region by N pixels (removes white fringe)
+  if (erode > 0) {
+    const alpha = new Uint8Array(W*H);
+    for (let i=0; i<W*H; i++) alpha[i] = data[i*4+3];
+
+    for (let pass=0; pass<erode; pass++) {
+      const tmp = alpha.slice();
+      for (let y=1; y<H-1; y++) for (let x=1; x<W-1; x++) {
+        if (tmp[y*W+x]===0) continue;
+        let minA = 255;
+        [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy]) => {
+          minA = Math.min(minA, tmp[(y+dy)*W+(x+dx)]);
+        });
+        if (minA === 0) alpha[y*W+x] = 0;
+      }
+    }
+    for (let i=0; i<W*H; i++) data[i*4+3] = alpha[i];
+  }
+
+  // ── 5. Feather: soften edges
+  if (feather > 0) {
+    const alpha = new Uint8Array(W*H);
+    for (let i=0; i<W*H; i++) alpha[i] = data[i*4+3];
+
+    for (let pass=0; pass<feather; pass++) {
+      const tmp = alpha.slice();
+      for (let y=1; y<H-1; y++) for (let x=1; x<W-1; x++) {
+        let sum = tmp[y*W+x]*4;
+        sum += tmp[(y-1)*W+x] + tmp[(y+1)*W+x] + tmp[y*W+x-1] + tmp[y*W+x+1];
+        alpha[y*W+x] = Math.round(sum/8);
+      }
+    }
+    for (let i=0; i<W*H; i++) data[i*4+3] = alpha[i];
+  }
+
+  return new ImageData(data, W, H);
+}
+
+function showResult(imageData) {
+  const W = imageData.width, H = imageData.height;
+
+  // result canvas (checkerboard bg)
+  cvResult.width  = W;
+  cvResult.height = H;
+  ctxResult.clearRect(0,0,W,H);
+  ctxResult.putImageData(imageData, 0, 0);
+
+  // demo canvas (dark bg)
+  cvDemo.width  = W;
+  cvDemo.height = H;
+  ctxDemo.clearRect(0,0,W,H);
+  ctxDemo.fillStyle = '#111';
+  ctxDemo.fillRect(0,0,W,H);
+  ctxDemo.putImageData(imageData, 0, 0);
+
+  // prepare blob for download
+  cvWork.width  = W;
+  cvWork.height = H;
+  ctxWork.putImageData(imageData, 0, 0);
+  cvWork.toBlob(blob => {
+    resultBlob = blob;
+    btnDownload.disabled = false;
+  }, 'image/png');
+}
+
+// ─────────────────────────────────────────────────
+// Download
+// ─────────────────────────────────────────────────
+btnDownload.addEventListener('click', () => {
+  if (!resultBlob) return;
+  const url = URL.createObjectURL(resultBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'logo-quillacas-transparente.png';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+});
+
+// ─────────────────────────────────────────────────
+// Reset
+// ─────────────────────────────────────────────────
+btnReset.addEventListener('click', () => {
+  origImageData = null; resultBlob = null;
+  [cvOrig,cvResult,cvDemo,cvWork].forEach(c => { c.width=1; c.height=1; });
+  btnProcess.disabled = true; btnDownload.disabled = true;
+  previewWrap.classList.remove('active');
+  previewHint.style.display = '';
+  fileInput.value = '';
+  setStatus('','');
+});
+
+// ─────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────
+function setStatus(msg, cls) {
+  statusBar.innerHTML = msg;
+  statusBar.className = cls || '';
+}
+</script>
+</body>
+</html>

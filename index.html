@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comercial Quillacas | Baterías Automotrices Bolivia</title>
+<meta name="description" content="Distribuidores autorizados de baterías automotrices en Bolivia. Toyo, Bosch, Enerjet, Volta y más. Envíos a todo el país. Calle Falsuri #1134, Cochabamba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo" id="navLogoWrap">
+      <img src="logo.svg" alt="Comercial Quillacas" class="nav-logo-img">
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#tienda">Tienda</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/59165302585" class="nav-cta" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+  <div class="hero-content" data-animate="fadeUp">
+    <div class="hero-badge">⚡ Distribuidores Autorizados · Bolivia</div>
+    <div class="logo-float-wrapper" id="logoFloat">
+      <div class="logo-ring ring-1"></div>
+      <div class="logo-ring ring-2"></div>
+      <img src="logo.svg" alt="Comercial Quillacas" class="hero-logo" id="heroLogo">
+    </div>
+    <h1 class="hero-title">La Energía que<br><span class="gradient-text">Bolivia Necesita</span></h1>
+    <p class="hero-subtitle">Especialistas en baterías automotrices con más de una década de experiencia. Ventas, instalación y diagnóstico técnico profesional.</p>
+    <div class="hero-actions">
+      <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+      <a href="https://wa.me/59165302585" class="btn-secondary" target="_blank" rel="noopener noreferrer">Consultar Ahora</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pill"><span class="stat-num">10+</span><span class="stat-lbl">Años</span></div>
+      <div class="stat-pill"><span class="stat-num">36</span><span class="stat-lbl">Marcas</span></div>
+      <div class="stat-pill"><span class="stat-num">24/7</span><span class="stat-lbl">Online</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIO BANNER -->
+<div class="horario-banner" data-animate="fadeUp">
+  <div class="horario-item"><span class="h-icon">🏪</span><span><strong>Tienda Física:</strong> Lun–Sáb 8:00 AM – 6:30 PM</span></div>
+  <div class="horario-divider"></div>
+  <div class="horario-item"><span class="h-icon live-dot">🌐</span><span><strong>Ventas Online</strong> — 24 Horas</span></div>
+  <div class="horario-divider"></div>
+  <div class="horario-item"><span class="h-icon">🚚</span><span><strong>Envíos a toda Bolivia</strong></span></div>
+</div>
+
+<!-- TIENDA -->
+<section class="tienda-section" id="tienda">
+  <div class="container">
+    <div class="section-header" data-animate="fadeUp">
+      <span class="section-tag">Nuestra Tienda</span>
+      <h2>Visítanos en <span class="accent">Cochabamba</span></h2>
+      <p>Encuentra todas las marcas y modelos disponibles en nuestra tienda física.</p>
+    </div>
+    <div class="tienda-grid">
+      <!-- FOTOS -->
+      <div class="tienda-photos">
+        <div class="tienda-photo-slot glass-card tienda-photo-main" data-animate="flyLeft">
+          <img src="C:/Users/ANTHONY/.gemini/antigravity/brain/f07cafad-d90a-4df8-97e1-5ab6eb36f447/media__1777781682356.jpg" alt="Fachada de Comercial Quillacas" class="tienda-img" loading="lazy">
+          <div class="tienda-photo-caption">🏪 Fachada Principal</div>
+        </div>
+        <div class="tienda-photo-slot glass-card" data-animate="flyUp">
+          <img src="C:/Users/ANTHONY/.gemini/antigravity/brain/f07cafad-d90a-4df8-97e1-5ab6eb36f447/media__1777781682260.jpg" alt="Interior – Baterías en exhibición" class="tienda-img" loading="lazy">
+          <div class="tienda-photo-caption">🔋 Interior – Stock Completo</div>
+        </div>
+        <div class="tienda-photo-slot glass-card" data-animate="flyRight">
+          <img src="C:/Users/ANTHONY/.gemini/antigravity/brain/f07cafad-d90a-4df8-97e1-5ab6eb36f447/media__1777781682289.jpg" alt="Interior – Área de baterías" class="tienda-img" loading="lazy">
+          <div class="tienda-photo-caption">⚡ Amplio Inventario</div>
+        </div>
+      </div>
+      <!-- INFO CARD -->
+      <div class="tienda-info-card glass-card" data-animate="flyRight">
+        <h3>📍 Encuéntranos Aquí</h3>
+        <p class="tienda-address">Calle Falsuri #1134<br>Cochabamba, Bolivia</p>
+        <div class="tienda-horario">
+          <div class="th-row"><span>Lun – Vie</span><span>8:00 AM – 6:30 PM</span></div>
+          <div class="th-row"><span>Sábado</span><span>8:00 AM – 6:30 PM</span></div>
+          <div class="th-row"><span>Online</span><span class="online-badge">24/7</span></div>
+        </div>
+        <a href="https://maps.google.com/?q=Calle+Falsuri+1134,+Cochabamba,+Bolivia" class="btn-map" target="_blank" rel="noopener noreferrer">🗺️ Cómo Llegar</a>
+      </div>
+    </div>
+    <div class="map-container glass-card" data-animate="fadeUp">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.3!2d-66.1569!3d-17.3935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+Falsuri+1134+Cochabamba!5e0!3m2!1ses!2sbo!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Comercial Quillacas"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section class="catalogo-section" id="catalogo">
+  <div class="container">
+    <div class="section-header" data-animate="fadeUp">
+      <span class="section-tag">Distribuidores Autorizados</span>
+      <h2>Catálogo por <span class="accent">Tecnología</span></h2>
+      <p>Selecciona la categoría para explorar las marcas disponibles.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="cat-tabs" data-animate="fadeUp">
+      <button class="cat-tab active" data-cat="liquidas">
+        <span class="cat-tab-icon">💧</span>
+        <span class="cat-tab-label">Baterías Líquidas</span>
+        <span class="cat-tab-sub">Ácido-Plomo</span>
+      </button>
+      <button class="cat-tab" data-cat="gel">
+        <span class="cat-tab-icon">🟢</span>
+        <span class="cat-tab-label">Baterías de Gel</span>
+        <span class="cat-tab-sub">Ciclo Profundo</span>
+      </button>
+      <button class="cat-tab" data-cat="agm">
+        <span class="cat-tab-icon">⚡</span>
+        <span class="cat-tab-label">AGM &amp; Litio</span>
+        <span class="cat-tab-sub">Alta Gama / Sólidas</span>
+      </button>
+    </div>
+
+    <!-- PANELS -->
+    <div class="cat-panel active" id="panel-liquidas">
+      <div class="cat-panel-header">
+        <h3>💧 Baterías Líquidas <span>Ácido-Plomo Convencional</span></h3>
+        <p>La tecnología más probada del mercado. Ideal para vehículos de uso diario, flotas y maquinaria industrial.</p>
+      </div>
+      <div class="brands-grid" id="grid-liquidas"></div>
+    </div>
+
+    <div class="cat-panel" id="panel-gel">
+      <div class="cat-panel-header">
+        <h3>🟢 Baterías de Gel <span>Ciclo Profundo</span></h3>
+        <p>Tecnología sellada sin mantenimiento. Perfecta para energía solar, UPS, telecomunicaciones y náutica.</p>
+      </div>
+      <div class="brands-grid" id="grid-gel"></div>
+    </div>
+
+    <div class="cat-panel" id="panel-agm">
+      <div class="cat-panel-header">
+        <h3>⚡ Baterías AGM &amp; Litio / Estado Sólido <span>Alta Gama</span></h3>
+        <p>Lo último en tecnología energética. Máximo rendimiento, larga vida útil y la menor tasa de autodescarga del mercado.</p>
+      </div>
+      <div class="brands-grid" id="grid-agm"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios-section" id="servicios">
+  <div class="container">
+    <div class="section-header" data-animate="fadeUp">
+      <span class="section-tag">Técnicos Especialistas</span>
+      <h2>Servicios <span class="accent">Técnicos</span> Profesionales</h2>
+      <p>Diagnóstico y mantenimiento avanzado a cargo de especialistas certificados.</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card glass-card" data-animate="flyLeft">
+        <div class="srv-icon">🔬</div><h3>Diagnóstico Avanzado</h3>
+        <p>Análisis completo con equipos de última generación para determinar el estado real de tu batería.</p>
+        <ul><li>Prueba de carga y descarga</li><li>Medición de CCA real</li><li>Análisis de sulfatación</li></ul>
+      </div>
+      <div class="servicio-card glass-card" data-animate="flyUp">
+        <div class="srv-icon">⚙️</div><h3>Reparación de Celdas</h3>
+        <p>Restauramos celdas dañadas con técnicas especializadas, prolongando la vida útil hasta un 70% más.</p>
+        <ul><li>Reemplazo de celdas</li><li>Restauración electrolítica</li><li>Reconexión de placas</li></ul>
+      </div>
+      <div class="servicio-card glass-card" data-animate="flyRight">
+        <div class="srv-icon">🔧</div><h3>Mantenimiento Preventivo</h3>
+        <p>Servicio de limpieza, carga y calibración para mantener tu batería en condiciones óptimas.</p>
+        <ul><li>Limpieza de terminales</li><li>Carga de mantenimiento</li><li>Revisión de electrolito</li></ul>
+      </div>
+      <div class="servicio-card glass-card" data-animate="flyLeft">
+        <div class="srv-icon">🏠</div><h3>Servicio a Domicilio</h3>
+        <p>Enviamos a nuestros técnicos directamente a tu ubicación para instalación o diagnóstico.</p>
+        <ul><li>Instalación en sitio</li><li>Diagnóstico en campo</li><li>Zona Cochabamba</li></ul>
+      </div>
+      <div class="servicio-card glass-card" data-animate="flyUp">
+        <div class="srv-icon">🚚</div><h3>Envíos Nacionales</h3>
+        <p>Despachamos tu batería a cualquier ciudad de Bolivia con embalaje especializado.</p>
+        <ul><li>Cobertura nacional</li><li>Embalaje protegido</li><li>Tracking en tiempo real</li></ul>
+      </div>
+      <div class="servicio-card glass-card" data-animate="flyRight">
+        <div class="srv-icon">🛡️</div><h3>Garantía Total</h3>
+        <p>Todas nuestras baterías incluyen garantía oficial de fábrica y soporte postventa completo.</p>
+        <ul><li>Garantía de fábrica</li><li>Soporte postventa</li><li>Cambio garantizado</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="nosotros-section" id="nosotros">
+  <div class="container">
+    <div class="nosotros-grid">
+      <div class="nosotros-content" data-animate="flyLeft">
+        <span class="section-tag">ADN Corporativo</span>
+        <h2>Somos el <span class="accent">Motor</span> de Bolivia</h2>
+        <p class="nosotros-lead">Con más de una década en el mercado boliviano, Comercial Quillacas es sinónimo de confianza, calidad y respaldo técnico en energía automotriz.</p>
+        <div class="mision-vision">
+          <div class="mv-card glass-card">
+            <div class="mv-icon">🎯</div><h4>Misión</h4>
+            <p>Ser el motor que impulsa a Bolivia, ofreciendo soluciones de energía inmediatas y garantizadas en todo el territorio nacional.</p>
+          </div>
+          <div class="mv-card glass-card">
+            <div class="mv-icon">🔭</div><h4>Visión 2030</h4>
+            <p>Consolidarnos como la red de distribución de baterías más moderna y tecnológica del país.</p>
+          </div>
+        </div>
+        <div class="valores-list">
+          <div class="valor-pill">⚡ Calidad Premium</div>
+          <div class="valor-pill">🤝 Confianza Total</div>
+          <div class="valor-pill">🚀 Respuesta Inmediata</div>
+          <div class="valor-pill">🌍 Cobertura Nacional</div>
+        </div>
+      </div>
+      <div class="nosotros-visual" data-animate="flyRight">
+        <div class="nv-card-big glass-card">
+          <img src="C:/Users/ANTHONY/.gemini/antigravity/brain/f07cafad-d90a-4df8-97e1-5ab6eb36f447/logo_comercial_quillacas_final_1777871742905.png" alt="Comercial Quillacas" class="nv-logo">
+          <div class="nv-stats">
+            <div class="nv-stat"><span>10+</span>Años</div>
+            <div class="nv-stat"><span>500+</span>Clientes</div>
+            <div class="nv-stat"><span>36</span>Marcas</div>
+            <div class="nv-stat"><span>9</span>Depto.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGÍSTICA -->
+<section class="logistica-section">
+  <div class="container">
+    <div class="section-header" data-animate="fadeUp">
+      <h2>Llegamos a <span class="accent">Toda Bolivia</span></h2>
+    </div>
+    <div class="logistica-grid">
+      <div class="log-item glass-card" data-animate="flyUp"><div class="log-icon">📦</div><h4>Embalaje Especializado</h4><p>Protección total para el transporte seguro.</p></div>
+      <div class="log-item glass-card" data-animate="flyUp"><div class="log-icon">⚡</div><h4>Despacho Rápido</h4><p>Enviamos el mismo día antes de las 3 PM.</p></div>
+      <div class="log-item glass-card" data-animate="flyUp"><div class="log-icon">📍</div><h4>9 Departamentos</h4><p>Cobertura en todo el territorio nacional.</p></div>
+      <div class="log-item glass-card" data-animate="flyUp"><div class="log-icon">💬</div><h4>Seguimiento Online</h4><p>Rastrea tu pedido vía WhatsApp.</p></div>
+    </div>
+    <div class="departamentos" data-animate="fadeUp">
+      <span>La Paz</span><span>Cochabamba</span><span>Santa Cruz</span><span>Oruro</span>
+      <span>Potosí</span><span>Chuquisaca</span><span>Tarija</span><span>Beni</span><span>Pando</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="feedback-section" id="contacto">
+  <div class="container">
+    <div class="section-header" data-animate="fadeUp">
+      <span class="section-tag">Opiniones de Clientes</span>
+      <h2>Lo que dicen nuestros <span class="accent">Clientes</span></h2>
+    </div>
+    <div class="reviews-existing">
+      <div class="review-card glass-card" data-animate="flyLeft"><div class="rev-stars">★★★★★</div><p>"Excelente servicio, me enviaron la batería a Santa Cruz en 2 días. 100% recomendado."</p><span>— Carlos M., Santa Cruz</span></div>
+      <div class="review-card glass-card" data-animate="flyUp"><div class="rev-stars">★★★★★</div><p>"Los técnicos repararon mi batería cuando todos decían que no tenía solución. ¡Increíble!"</p><span>— María T., Cochabamba</span></div>
+      <div class="review-card glass-card" data-animate="flyRight"><div class="rev-stars">★★★★★</div><p>"Precios justos, garantía real y atención rápida. La mejor batería que he comprado."</p><span>— Roberto A., La Paz</span></div>
+    </div>
+    <div class="feedback-form-container glass-card" data-animate="fadeUp">
+      <h3>Déjanos tu Opinión</h3>
+      <form id="feedbackForm" action="https://formspree.io/f/xqewndzb" method="POST">
+        <div class="star-rating" id="starRating">
+          <span class="star" data-val="1">★</span><span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span><span class="star" data-val="4">★</span><span class="star" data-val="5">★</span>
+        </div>
+        <input type="hidden" name="calificacion" id="ratingInput" value="">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <textarea name="comentario" placeholder="Cuéntanos tu experiencia..." rows="4" required></textarea>
+        <input type="hidden" name="_subject" value="Nueva reseña – Comercial Quillacas">
+        <button type="submit" class="btn-primary">Enviar Reseña</button>
+      </form>
+      <div id="formSuccess" class="form-success" style="display:none">¡Gracias! Tu reseña fue enviada con éxito. 🎉</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.svg" alt="Comercial Quillacas" class="footer-logo">
+        <p>Especialistas en energía automotriz. Tu batería, nuestra garantía.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/59165302585" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+          <a href="tel:+59165302585" aria-label="Llamar">📞</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li>Venta de Baterías</li><li>Diagnóstico Técnico</li><li>Reparación de Celdas</li><li>Mantenimiento</li><li>Envíos Nacionales</li></ul></div>
+      <div class="footer-col"><h4>Marcas</h4><ul><li>Toyo · Bosch · Moura</li><li>Heliar · ACDelco · VARTA</li><li>Optima · Yuasa · CATL</li><li>Victron · Odyssey · BYD</li><li>+ 22 marcas más</li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li>📍 Calle Falsuri #1134, Cbba.</li><li>📞 +591 65302585</li><li>🕐 Lun–Sáb: 8AM–6:30PM</li><li>🌐 Online: 24/7</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Comercial Quillacas. Todos los derechos reservados. | Cochabamba, Bolivia</p></div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/59165302585?text=Hola!%20Vi%20su%20página%20web%20y%20me%20interesa%20una%20batería." class="whatsapp-float" target="_blank" rel="noopener noreferrer" id="waBtn" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- CHAT -->
+<div class="chat-bubble" id="chatBubble">
+  <div class="chat-header">
+    <div class="chat-avatar">⚡</div>
+    <div><strong>Quillacas Bot</strong><div class="chat-status">🟢 En línea ahora</div></div>
+    <button class="chat-close" id="chatClose">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">¡Hola! 👋 Tenemos cualquier modelo de batería que busques. ¿En qué te ayudo?</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Escribe tu consulta...">
+    <button id="chatSend">➤</button>
+  </div>
+</div>
+<button class="chat-trigger" id="chatTrigger" aria-label="Chat">
+  <span class="chat-trigger-icon">💬</span>
+  <span class="chat-trigger-badge">1</span>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
