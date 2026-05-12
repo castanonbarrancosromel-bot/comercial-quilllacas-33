@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 </head>
 <body>
 
@@ -38,23 +39,44 @@
   <div class="hero-orb orb-1"></div>
   <div class="hero-orb orb-2"></div>
   <div class="hero-orb orb-3"></div>
-  <div class="hero-content" data-animate="fadeUp">
-    <div class="hero-badge">⚡ Distribuidores Autorizados · Bolivia</div>
-    <div class="logo-float-wrapper" id="logoFloat">
-      <div class="logo-ring ring-1"></div>
-      <div class="logo-ring ring-2"></div>
-      <img src="logo.svg" alt="Comercial Quillacas" class="hero-logo" id="heroLogo">
+
+  <div class="hero-layout">
+    <!-- LEFT: Text column -->
+    <div class="hero-text-col" data-animate="flyLeft">
+      <div class="hero-badge">⚡ Distribuidores Autorizados · Bolivia</div>
+
+      <!-- Logo small in text col -->
+      <div class="hero-logo-row">
+        <img src="logo.svg" alt="Comercial Quillacas" class="hero-logo-inline">
+      </div>
+
+      <h1 class="hero-title">La Energía que<br><span class="gradient-text">Bolivia Necesita</span></h1>
+      <p class="hero-subtitle">Especialistas en baterías automotrices con más de una década de experiencia. Ventas, instalación y diagnóstico técnico profesional.</p>
+
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn-primary">⚡ Ver Catálogo</a>
+        <a href="https://wa.me/59165302585" class="btn-secondary" target="_blank" rel="noopener noreferrer">💬 Consultar Ahora</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-pill"><span class="stat-num">10+</span><span class="stat-lbl">Años</span></div>
+        <div class="stat-pill"><span class="stat-num">36</span><span class="stat-lbl">Marcas</span></div>
+        <div class="stat-pill"><span class="stat-num">24/7</span><span class="stat-lbl">Online</span></div>
+      </div>
     </div>
-    <h1 class="hero-title">La Energía que<br><span class="gradient-text">Bolivia Necesita</span></h1>
-    <p class="hero-subtitle">Especialistas en baterías automotrices con más de una década de experiencia. Ventas, instalación y diagnóstico técnico profesional.</p>
-    <div class="hero-actions">
-      <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
-      <a href="https://wa.me/59165302585" class="btn-secondary" target="_blank" rel="noopener noreferrer">Consultar Ahora</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-pill"><span class="stat-num">10+</span><span class="stat-lbl">Años</span></div>
-      <div class="stat-pill"><span class="stat-num">36</span><span class="stat-lbl">Marcas</span></div>
-      <div class="stat-pill"><span class="stat-num">24/7</span><span class="stat-lbl">Online</span></div>
+
+    <!-- RIGHT: 3D Battery column -->
+    <div class="hero-3d-col">
+      <div id="battery3dContainer">
+        <div class="battery-label-overlay">
+          <span class="bat-volt">12V</span>
+          <span class="bat-sub">HIGH PERFORMANCE</span>
+        </div>
+        <div class="bat-charge-indicator">
+          <div class="bat-charge-bar" id="batChargeBar"></div>
+        </div>
+      </div>
+      <div class="bat-caption">⚡ Arrastra para girar</div>
     </div>
   </div>
 </section>
@@ -345,5 +367,6 @@
 </button>
 
 <script src="script.js"></script>
+<script src="battery3d.js"></script>
 </body>
 </html>
